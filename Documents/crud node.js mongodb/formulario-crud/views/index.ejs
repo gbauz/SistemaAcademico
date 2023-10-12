@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario CRUD</title>
+</head>
+<body>
+    <h1>Formulario CRUD</h1>
+    
+    <h2>Lista de contactos:</h2>
+    <ul>
+        <% contactos.forEach(function(contacto) { %>
+            <li>
+                <a href="/contacto/<%= contacto._id %>"><%= contacto.nombre %></a>
+                <form method="post" action="/contacto/<%= contacto._id %>/eliminar" style="display: inline;">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+
+    <h2>Añadir contacto:</h2>
+    <form method="post" action="/contacto">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+        <label for="mensaje">Mensaje:</label>
+        <textarea name="mensaje" required></textarea><br>
+        <button type="submit">Guardar contacto</button>
+    </form>
+</body>
+</html>
