@@ -1,27 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const Conexion = require('../controlador/conexion');
-const {comparePassword, generateToken, verificaToken, revokeToken } = require('./auth');
-
+const Conexion = require('./conexion');
+const { generateToken, verificaToken, revokeToken } = require('./auth');
+const Usuario = require('../modelo/usuario');
+/**NOTA SIEMPRE AL AGREGAR ALGUNA CLASE DE POO A LA CAPA CONTROLADOR SE DEBE PRIMERO REVISAR LA CLASE AUTH Y 
+ * TOKENS.JS
+ */
 // Endpoint de inicio de sesión
 router.post('/login', async (req, res) => {
-  const { cedula,contraseña } = req.body; 
+  const { cedula, contraseña } = req.body;
 
-  if (!cedula|| !contraseña) 
+  if (!cedula || !contraseña) 
     return res.status(400).json({ error: 'Correo electrónico y contraseña son requeridos.' });
-
 
   try {
     const [rows] = await (await Conexion).execute(
-      
       'SELECT * FROM Usuario WHERE cedula = ? AND contraseña = ?',
       [cedula, contraseña]
     );
 
     if (rows.length > 0) {
-      const usuario = rows[0];
-      if (usuario.rol_id === 1  ||usuario.rol_id===2) {    
-        const token = generateToken(usuario);
+      const usuarioData = rows[0];
+      const usuario = new Usuario(usuarioData.cedula, usuarioData.nombre, usuarioData.correo_electronico, usuarioData.contraseña);
+
+      if (usuarioData.rol_id === 1 || usuarioData.rol_id === 2) {
+        const token = generateToken(usuarioData);
         res.json({ success: true, token });
       } else {
         res.status(403).json({ error: 'No tienes permiso para acceder.' });
@@ -34,6 +37,7 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Error al autenticar usuario.' });
   }
 });
+
 // Endpoint para verificar sesión y obtener permisos del usuario
 router.get('/session', verificaToken, async (req, res) => {
   try {
@@ -45,16 +49,12 @@ router.get('/session', verificaToken, async (req, res) => {
 
     const permissions = rows.map(row => row.id_permiso);
 
-    console.log(permissions);
-
     res.json({ user: { cedula, name, email, rol, permissions } });
   } catch (error) {
     console.error('Error al obtener información de sesión:', error);
     res.status(500).json({ error: 'Error al obtener información de sesión.' });
   }
 });
-
-module.exports = router;
 
 // Endpoint para cerrar sesión
 router.post('/logout', verificaToken, (req, res) => {
@@ -86,14 +86,11 @@ router.post('/users', verificaToken, async (req, res) => {
   const { cedula, nombre, correo_electronico, contraseña, rol_id } = req.body;
 
   try {
-
     const rolIdNumerico = Number(rol_id);
 
     if (rolIdNumerico === 1) {
       return res.status(403).json({ error: 'No se pueden crear usuarios con rol 1 Administrador.' });
     }
-
-    
 
     const [existingUserRows] = await (await Conexion).execute(
       'SELECT * FROM Usuario WHERE cedula = ?',
@@ -104,10 +101,11 @@ router.post('/users', verificaToken, async (req, res) => {
       return res.status(400).json({ error: 'Ya existe un usuario con el mismo número de cédula.' });
     }
 
-   
+    const nuevoUsuario = new Usuario(cedula, nombre, correo_electronico, contraseña);
+
     await (await Conexion).execute(
       'INSERT INTO Usuario (cedula, nombre, correo_electronico, contraseña, rol_id) VALUES (?, ?, ?, ?, ?)',
-      [cedula, nombre, correo_electronico,rol_id]
+      [nuevoUsuario.getCedula(), nuevoUsuario.getNombre(), nuevoUsuario.getCorreoElectronico(), nuevoUsuario.getContrasena(), rol_id]
     );
 
     res.json({ success: true, message: 'Usuario creado correctamente.' });
@@ -167,7 +165,6 @@ router.put('/users/:id', verificaToken, async (req, res) => {
     if (rolIdNumerico === 1) {
       return res.status(403).json({ error: 'No se puede asignar el rol 1 Administrador a un usuario.' });
     }
-    
 
     // Verificar si se está intentando cambiar el rol de un usuario con rol 1
     if (userRol === 1 && rol_id !== userRol) {
@@ -196,11 +193,9 @@ router.put('/users/:id/password', verificaToken, async (req, res) => {
   }
 
   try {
-
-
     await (await Conexion).execute(
       'UPDATE Usuario SET contraseña = ? WHERE cedula = ?',
-      [userId]
+      [nuevaContraseña, userId]
     );
 
     res.json({ success: true, message: 'Contraseña actualizada correctamente.' });
