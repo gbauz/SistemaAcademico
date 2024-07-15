@@ -1,12 +1,3 @@
-/*
-// server.js
-const Usuario = require('./modelo/usuario'); // Importar la clase Usuario desde la ruta correcta
-
-const usuario1 = new Usuario('12345678', 'Juan Pérez', 'juan.perez@example.com', 'password123');
-usuario1.mostrarInformacion();
-
-
-*/
 const express = require('express');
 const path = require('path');
 const app = express();

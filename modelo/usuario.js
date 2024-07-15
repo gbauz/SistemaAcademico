@@ -3,10 +3,9 @@ class Usuario {
         this.cedula = cedula;
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;
-        this.contrasena = contrasena; // Recuerda no guardar contraseñas en texto plano en un entorno de producción
+        this.contrasena = contrasena;
     }
 
-    // Getters
     getCedula() {
         return this.cedula;
     }
@@ -23,7 +22,6 @@ class Usuario {
         return this.contrasena;
     }
 
-    // Setters
     setCedula(cedula) {
         this.cedula = cedula;
     }
@@ -37,16 +35,12 @@ class Usuario {
     }
 
     setContrasena(contrasena) {
-        this.contrasena = contrasena; // Nuevamente, asegúrate de manejar esto de forma segura en producción
+        this.contrasena = contrasena;
     }
 
-    // Método para mostrar información del usuario
     mostrarInformacion() {
-        console.log(`Cedula: ${this.cedula}, Nombre: ${this.nombre}, Correo Electrónico: ${this.correoElectronico}`);
+        console.log(`Cédula: ${this.cedula}, Nombre: ${this.nombre}, Correo Electrónico: ${this.correoElectronico}`);
     }
 }
-module.exports = Usuario;
 
-// Ejemplo de uso
-/*const usuario1 = new Usuario('12345678', 'Juan Pérez', 'juan.perez@example.com', 'password123');
-usuario1.mostrarInformacion();*/
+module.exports = Usuario;

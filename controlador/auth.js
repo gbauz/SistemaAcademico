@@ -1,18 +1,50 @@
-/*const bcrypt = require('bcrypt');*/
-const { generateToken, verificaToken, revokeToken } = require('../controlador/tokens');
+const jwt = require('jsonwebtoken');
 
-const saltRounds = 10;
-/*
-async function hashPassword(password) {
-  return await bcrypt.hash(password, saltRounds);
+const tokensRevocados = new Set();
+
+function generateToken(user) {
+  return jwt.sign(
+    {
+      userId: user.id,
+      cedula: user.cedula,
+      email: user.correo_electronico,
+      name: user.nombre,
+      rol: user.rol_id
+    },
+    'tu_clave_secreta',
+    { expiresIn: '1h' }
+  );
 }
 
-async function comparePassword(password, hash) {
-  return await bcrypt.compare(password, hash);
-}*/
+function verificaToken(req, res, next) {
+  const token = req.headers.authorization;
 
-module.exports = { 
-  generateToken,
+  if (!token) {
+    return res.status(401).json({ error: 'Token no proporcionado.' });
+  }
+
+  const tokenValue = token.split(' ')[1];
+
+  if (tokensRevocados.has(tokenValue)) {
+    return res.status(401).json({ error: 'Token revocado. Inicie sesión nuevamente.' });
+  }
+
+  jwt.verify(tokenValue, 'tu_clave_secreta', (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: 'Token inválido.' });
+    }
+    req.user = decoded;
+    next();
+  });
+}
+
+function revokeToken(token) {
+  tokensRevocados.add(token);
+}
+
+module.exports = {
   verificaToken,
-  revokeToken
+  generateToken,
+  revokeToken,
+  tokensRevocados,
 };
