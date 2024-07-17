@@ -1,132 +1,22 @@
 /* AdminPage.css */
 
-/* Estilos generales */
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.75);
-  }
-  .navbar-dark .navbar-nav .nav-link:hover {
-    color: rgba(255, 255, 255, 1);
-  }
-  
-  
-  /* Estilos para la barra lateral en dispositivos móviles */
-  @media (max-width: 500px) {
-    .sidebar {
-      position: fixed;
-      top: 56px; /* Altura de la barra de navegación */
-      left: 0;
-      height: calc(100% - 56px);
-      z-index: 800;
-      background-color: #1a6ab9;
-      overflow-y: auto;
-      transition: transform 0.3s ease-in-out;
-      transform: translateX(-100%);
-    }
-  
-    .sidebar.show {
-      transform: translateX(0);
-    }
-  
-    .content {
-      margin-top: 56px; /* Ajusta el margen superior para dejar espacio a la barra de navegación */
-    }
-  
-    .navbar-collapse {
-      display: none !important;
-    }
-  }
-  
-  /* Estilos para la barra lateral en dispositivos de escritorio */
-  @media (min-width: 769px) {
-    .sidebar {
-      width: 200px;
-      height: 100vh;
-      position: fixed;
-      left: 0;
-      background-color: #1a6ab9;
-      z-index: 1040;
-      overflow-y: auto;
-    }
-  
-    .content {
-      margin-left: 200px;
-      width: calc(100% - 200px);
-    }
-  
-    
-  }
-
-/* AdminPage.css */
-.sidebar {
-  width: 250px;
-  position: fixed;
-  
-  left: 0;
-  height: 100%;
-  overflow-y: auto;
-  background-color: #343a40;
-  transition: width 0.3s;
+  color: rgba(255, 255, 255, 0.75);
 }
 
-
-
-.content {
-  margin-left: 250px;
-  transition: margin-left 0.3s;
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 1);
 }
 
-.breadcrumb {
-  padding: 10px;
-  background-color: #064c91;
-  border-radius: 4px;
-  margin-bottom: 20px;
+/* Elimina el padding lateral en la barra de navegación */
+.navbar {
+  padding-left: 0;
+  padding-right: 0;
 }
-
-.breadcrumb i {
-  margin-right: 8px;
+.navbar-brand{
+  padding-left: 20px;
 }
-
-.user-initial {
-  width: 30px;
-  height: 30px;
-  background-color: #d3d3d3;
-  color: #343a40;
-  border-radius: 50%;
-  font-weight: bold;
-}
-
-@media (max-width: 992px) {
-  .sidebar {
-    position: absolute;
-    height: 100%;
-    z-index: 1;
-    width: 0;
-  }
-
-  .sidebar.show {
-    width: 250px;
-  }
-
-  .content {
-    margin-left: 0;
-  }
-}
-
-  /* Barra superior */
-.bg-dark {
-  background-color: rgb(19 94 169) !important
-}
-
 /* Barra lateral */
-.bg-dark {
-  background-color: rgb(19 94 169) !important
-}
-
-.nav-link {
-color: white;
-
-}
-
 .sidebar {
   width: 250px;
   height: 100vh;
@@ -134,33 +24,66 @@ color: white;
   top: 56px; /* Ajuste para la altura de la barra de navegación */
   left: 0;
   overflow-y: auto;
-  transition: transform 0.3s ease;
-  /*transform: translateX(-100%);*/
-}
-
-.sidebar.show {
-  transform: translateX(0);
+  background-color: #343a40;
 }
 
 .content {
-  margin-left: 250px;
-  width: calc(100% - 250px);
-  margin-top: 56px; /* Ajuste para la altura de la barra de navegación */
+
+  margin-left: 777px;
+   color:black;
+  margin-top: 10px; /* Ajuste para la altura de la barra de navegación */
 }
 
+h3{
+  color: black;
+}
+
+/* Estilo para el icono de usuario */
+.navbar-nav .fa-user-circle {
+  margin-right: 8px;
+}
+
+/* Estilos para la información del usuario en la barra lateral */
+.sidebar h2 {
+  color: #ffffff;
+  padding: 15px;
+}
+
+.sidebar p {
+  color: #ffffff;
+  padding: 0 15px;
+}
+/* Estilos para los elementos de la lista en la barra lateral */
+.sidebar .list-group-item {
+  background-color: #343a40;
+  color: #ffffff;
+  border: 1px solid rgb(255, 255, 255); /* Borde para los elementos de la lista */
+  margin-bottom: 20px; /* Espacio entre los elementos de la lista */
+}
+
+/* Estilo para los enlaces dentro de los elementos de la lista */
+.sidebar .list-group-item a {
+  color: #ffffff; /* Color del texto de los enlaces */
+  text-decoration: none; /* Eliminar subrayado */
+}
+
+.sidebar .list-group-item a:hover {
+  color: #adb5bd; /* Color del texto al pasar el mouse */
+  text-decoration: none; /* Asegurar que no haya subrayado al pasar el mouse */
+}
+/* Ajustes para dispositivos móviles */
 @media (max-width: 768px) {
   .sidebar {
-    transform: translateX(-100%);
-  }
-
-  .sidebar.show {
-    transform: translateX(0);
+    width: 100%;
+    position: relative;
+    top: 0;
+    height: auto;
   }
 
   .content {
     margin-left: 0;
     width: 100%;
+    margin-top: 20px; /* Ajuste para dispositivos móviles */
   }
 }
-
 

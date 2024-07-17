@@ -19,7 +19,7 @@
     "react-bootstrap": "^2.10.2",
     "react-data-table-component": "^7.6.2",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.0",
+    "react-router-dom": "^6.25.0",
     "react-scripts": "5.0.1",
     "sequelize": "^6.37.3",
     "web-vitals": "^2.1.4"
