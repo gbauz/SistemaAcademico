@@ -33,14 +33,14 @@ const AdminPage = () => {
       if (user.rol === 1) { // Rol Docente
         return (
           <ul className="list-group">
-            <li className="list-group-item"><Link to="/admin/IngresoCalificaciones">Ingreso de Calificaciones</Link></li>
+            <li className="list-group-item"><Link to="IngresoCalificaciones">Ingreso de Calificaciones</Link></li>
           </ul>
         );
       } else if (user.rol === 2) { // Rol Secretario
         return (
           <ul className="list-group">
-            <li className="list-group-item"><Link to="/admin/ModificarCalificaciones">Modificar Calificaciones</Link></li>
-            <li className="list-group-item"><Link to="/admin/IngresarEstudiante">Ingresar Estudiante</Link></li>
+            <li className="list-group-item"><Link to="ModificarCalificaciones">Modificar Calificaciones</Link></li>
+            <li className="list-group-item"><Link to="IngresarEstudiante">Ingresar Estudiante</Link></li>
           </ul>
         );
       }
@@ -55,9 +55,9 @@ const AdminPage = () => {
         <Sidebar user={user} renderOptions={renderOptions} />
         <div className="content">
           <Routes>
-            <Route path="/admin/IngresoCalificaciones" element={<IngresoCalificaciones />} />
-            <Route path="/admin/ModificarCalificaciones" element={<ModificarCalificaciones />} />
-            <Route path="/admin/IngresarEstudiante" element={<IngresarEstudiante />} />
+            <Route path="IngresoCalificaciones" element={<IngresoCalificaciones />} />
+            <Route path="ModificarCalificaciones" element={<ModificarCalificaciones />} />
+            <Route path="IngresarEstudiante" element={<IngresarEstudiante />} />
           </Routes>
         </div>
       </div>
