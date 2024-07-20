@@ -1,3 +1,4 @@
+
 class Usuario {
     constructor(cedula, nombre, correoElectronico, contrasena) {
         this.cedula = cedula;
@@ -41,6 +42,7 @@ class Usuario {
     mostrarInformacion() {
         console.log(`Cédula: ${this.cedula}, Nombre: ${this.nombre}, Correo Electrónico: ${this.correoElectronico}`);
     }
+    
 }
 
 module.exports = Usuario;

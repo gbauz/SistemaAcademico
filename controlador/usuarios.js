@@ -33,6 +33,19 @@ router.post('/login', async (req, res) => {
     console.error('Error al autenticar:', error);
     res.status(500).json({ error: 'Error al autenticar usuario.' });
   }
+
+  exports.getUsuarios = (req, res) => {
+    db.query('SELECT * FROM Usuario', (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+};
+router.get('/', (req, res) => {
+  db.query('SELECT * FROM Usuario', (err, results) => {
+      if (err) throw err;
+      res.json(results);
+  });
+});
 });
 
 // Otros endpoints para sesión, cerrar sesión, obtener y manejar usuarios...
