@@ -1,5 +1,3 @@
-/* AdminPage.css */
-
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.75);
 }
@@ -13,7 +11,7 @@
   padding-left: 0;
   padding-right: 0;
 }
-.navbar-brand{
+.navbar-brand {
   padding-left: 20px;
 }
 /* Barra lateral */
@@ -28,13 +26,13 @@
 }
 
 .content {
-
-  margin-left: 777px;
-   color:black;
+  max-width: 800px; /* Ajusta el ancho máximo según sea necesario */
+  margin: 10px auto; /* Centrará el contenido */
+  color: black;
   margin-top: 10px; /* Ajuste para la altura de la barra de navegación */
 }
 
-h3{
+h3 {
   color: black;
 }
 
@@ -86,4 +84,3 @@ h3{
     margin-top: 20px; /* Ajuste para dispositivos móviles */
   }
 }
-

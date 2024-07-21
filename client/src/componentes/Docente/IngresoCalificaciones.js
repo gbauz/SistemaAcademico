@@ -1,7 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Editarinsumo from './EditarInsumo';
+import EditarInsumo from './EditarInsumo';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const IngresoCalificaciones = () => {
   const [insumos, setInsumos] = useState([]);
@@ -42,10 +43,10 @@ const IngresoCalificaciones = () => {
   };
 
   return (
-    <div>
-      <h2>Lista de Insumos</h2>
-      <table>
-        <thead>
+    <div className="container mt-4">
+      <h2 className="mb-4">Lista de Insumos</h2>
+      <table className="table table-striped table-bordered">
+        <thead className="thead-dark">
           <tr>
             <th>ID</th>
             <th>Nombre del Usuario</th>
@@ -57,7 +58,7 @@ const IngresoCalificaciones = () => {
           </tr>
         </thead>
         <tbody>
-          {insumos.map(insumo => (
+          {insumos.map((insumo) => (
             <tr key={insumo.id}>
               <td>{insumo.id}</td>
               <td>{insumo.usuario_nombre}</td>
@@ -66,8 +67,8 @@ const IngresoCalificaciones = () => {
               <td>{insumo.insumo3}</td>
               <td>{insumo.promedio}</td>
               <td>
-                <button onClick={() => handleEditClick(insumo)}>Editar</button>
-                <button onClick={() => deleteInsumo(insumo.id)}>Eliminar</button>
+                <button className="btn btn-primary mr-2" onClick={() => handleEditClick(insumo)}>Editar</button>
+                <button className="btn btn-danger" onClick={() => deleteInsumo(insumo.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -75,11 +76,10 @@ const IngresoCalificaciones = () => {
       </table>
 
       {isEditing && (
-        <Editarinsumo insumo={selectedInsumo} onClose={handleCloseEdit} />
+        <EditarInsumo insumo={selectedInsumo} onClose={handleCloseEdit} />
       )}
     </div>
   );
-
 };
 
 export default IngresoCalificaciones;
