@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('./conexion'); 
 
-// Obtener todos los estudiantes y sus cursos
+// Obtener todos los estudiantes y cursos
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query(
