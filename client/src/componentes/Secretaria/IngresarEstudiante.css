@@ -1,0 +1,114 @@
+.contenedor {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.formulario {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formulario h2 {
+    margin-bottom: 20px;
+}
+
+.formulario div {
+    margin-bottom: 10px;
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.formulario button {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.formulario button:hover {
+    background: #218838;
+}
+
+.tabla {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.tabla th, .tabla td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla th {
+    background: #f2f2f2;
+}
+
+.tabla button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.borrar {
+    background: #dc3545;
+    color: #fff;
+}
+
+.editar {
+    background: #ffc107;
+    color: #fff;
+}
+
+.guardar {
+    background: #007bff;
+    color: #fff;
+}
+
+.confirmDelete {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.confirmDelete p {
+    margin-bottom: 20px;
+}
+
+.confirmDelete button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.confirmDelete button:hover {
+    opacity: 0.8;
+}
