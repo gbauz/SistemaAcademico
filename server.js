@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 const usuariosRouter = require('./controlador/usuarios');
 const rolesRouter = require('./controlador/roles');
 const insumosRouter = require('./controlador/insumos');  // Añadir el controlador de insumos
+const estudiantesRouter = require('./controlador/estudiantes');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', usuariosRouter);
 app.use('/api/roles', rolesRouter);
 app.use('/api/insumos', insumosRouter); 
+app.use('/api/estudiantes', estudiantesRouter);
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 app.get('*', (req, res) => {
@@ -22,3 +24,4 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
