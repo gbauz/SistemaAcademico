@@ -7,6 +7,7 @@ const usuariosRouter = require('./controlador/usuarios');
 const rolesRouter = require('./controlador/roles');
 const insumosRouter = require('./controlador/insumos');  // Añadir el controlador de insumos
 const estudiantesRouter = require('./controlador/estudiantes');
+const estudiantescompletoRouter = require('./controlador/estudiantescompleto');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,6 +16,7 @@ app.use('/api', usuariosRouter);
 app.use('/api/roles', rolesRouter);
 app.use('/api/insumos', insumosRouter); 
 app.use('/api/estudiantes', estudiantesRouter);
+app.use('/api/estudiantescompletos', estudiantescompletoRouter); 
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 app.get('*', (req, res) => {
