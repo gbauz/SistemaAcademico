@@ -32,7 +32,12 @@
   margin-top: 10px; /* Ajuste para la altura de la barra de navegación */
 }
 
-h3 {
+.permisos {
+  color: rgb(255, 255, 255);
+  margin-bottom: 10%;
+}
+
+h3{
   color: black;
 }
 

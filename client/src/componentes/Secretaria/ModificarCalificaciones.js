@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import './ModificarCalificaciones.css';
 
 const ModificarCalificaciones = () => {
   const [insumos, setInsumos] = useState([]);
@@ -84,7 +85,7 @@ const ModificarCalificaciones = () => {
               <td>{insumo.insumo3}</td>
               <td>{insumo.promedio}</td>
               <td>{insumo.curso_nombre}</td>
-              <td>
+              <td className='buttonsflex'>
                 <button className="btn btn-primary mr-2" onClick={() => handleEditClick(insumo)}>Editar</button>
                 <button className="btn btn-danger" onClick={() => deleteInsumo(insumo.id)}>Eliminar</button>
               </td>
@@ -132,8 +133,10 @@ const ModificarCalificaciones = () => {
                 />
               </div>
             </div>
+            <div className='btngroup'>
             <button type="submit" className="btn btn-primary mr-2">Guardar</button>
             <button type="button" className="btn btn-secondary" onClick={handleCloseEdit}>Cancelar</button>
+            </div>
           </form>
         </div>
       )}

@@ -11,7 +11,7 @@ const Sidebar = ({ user, renderOptions }) => {
         <div>
           <p><strong>Nombre:</strong> {user.name}</p>
           <p><strong>Rol:</strong> {user.rol}</p>
-          <h3><strong>Permisos:</strong></h3>
+          <h3 className='permisos'><strong>Permisos:</strong></h3>
           {renderOptions()}
         </div>
       ) : (

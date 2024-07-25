@@ -6,7 +6,7 @@ import './AdminPage.css'; // Asegúrate de que el CSS esté correctamente import
 const Navbar = ({ user, handleLogout }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="#">Dashboard Cursos de inglesaaaaaaaaaaaaaaaaaa</a>
+      <a className="navbar-brand" href="#">Dashboard Cursos de ingles</a>
       <div className="collapse navbar-collapse justify-content-end">
         <ul className="navbar-nav">
           <li className="nav-item dropdown">
