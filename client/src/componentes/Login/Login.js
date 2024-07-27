@@ -23,8 +23,9 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        const { token } = data;
-        localStorage.setItem('token', token); // Almacena el token en localStorage
+        const { token, cedula } = data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('cedula', cedula) // Almacena el token en localStorage
         navigate('/admin'); // Redirige a la página protegida
       } else {
         setError(data.error); // Muestra el mensaje de error del servidor

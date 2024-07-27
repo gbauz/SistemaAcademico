@@ -20,9 +20,9 @@ router.post('/login', async (req, res) => {
       const usuarioData = rows[0];
       const usuario = new Usuario(usuarioData.cedula, usuarioData.nombre, usuarioData.correo_electronico, usuarioData.contraseña);
 
-      if (usuarioData.rol_id === 1 || usuarioData.rol_id === 2) {
+      if (usuarioData.rol_id === 1 || usuarioData.rol_id === 2 || usuarioData.rol_id  === 3) {
         const token = generateToken(usuarioData);
-        res.json({ success: true, token });
+        res.json({ success: true, token, cedula:usuarioData.cedula });
       } else {
         res.status(403).json({ error: 'No tienes permiso para acceder.' });
       }
