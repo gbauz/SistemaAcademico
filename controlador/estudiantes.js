@@ -65,17 +65,22 @@ router.put('/:cedula', async (req, res) => {
     const { cedula } = req.params;
     const { nombre, correo, curso } = req.body;
     try {
-     
+       
         await pool.query(
             'UPDATE Usuario SET nombre = ?, correo_electronico = ? WHERE cedula = ?',
             [nombre, correo, cedula]
         );
 
-    
-        await pool.query(
-            'UPDATE Matricula SET id_cursos = ? WHERE cedula_usuario = ?',
-            [curso, cedula]
-        );
+        
+        if (curso) {
+            await pool.query(
+                'UPDATE Matricula SET id_cursos = ? WHERE cedula_usuario = ?',
+                [curso, cedula]
+            );
+        } else {
+            
+            console.log('Curso no definido o vacío');
+        }
 
         res.json({ message: 'Estudiante actualizado correctamente' });
     } catch (err) {
